@@ -1,6 +1,6 @@
 <?php
-// source: C:\xampp\htdocs\sandbox\app/config/config.neon 
-// source: C:\xampp\htdocs\sandbox\app/config/config.local.neon 
+// source: /var/www/RS/app/config/config.neon 
+// source: /var/www/RS/app/config/config.local.neon 
 
 /**
  * @property Nette\Application\Application $application
@@ -75,8 +75,8 @@ class SystemContainer extends Nette\DI\Container
 	public function __construct()
 	{
 		parent::__construct(array(
-			'appDir' => 'C:\\xampp\\htdocs\\sandbox\\app',
-			'wwwDir' => 'C:\\xampp\\htdocs\\sandbox\\www',
+			'appDir' => '/var/www/RS/app',
+			'wwwDir' => '/var/www/RS/www',
 			'debugMode' => TRUE,
 			'productionMode' => FALSE,
 			'environment' => 'development',
@@ -86,7 +86,7 @@ class SystemContainer extends Nette\DI\Container
 				'parent' => 'Nette\\DI\\Container',
 				'accessors' => TRUE,
 			),
-			'tempDir' => 'C:\\xampp\\htdocs\\sandbox\\app/../temp',
+			'tempDir' => '/var/www/RS/app/../temp',
 		));
 	}
 
@@ -130,7 +130,7 @@ class SystemContainer extends Nette\DI\Container
 	 */
 	public function createServiceCacheStorage()
 	{
-		$service = new Nette\Caching\Storages\FileStorage('C:\\xampp\\htdocs\\sandbox\\app/../temp/cache', $this->getService('nette.cacheJournal'));
+		$service = new Nette\Caching\Storages\FileStorage('/var/www/RS/app/../temp/cache', $this->getService('nette.cacheJournal'));
 		return $service;
 	}
 
@@ -193,7 +193,7 @@ class SystemContainer extends Nette\DI\Container
 	 */
 	public function createServiceNette__cacheJournal()
 	{
-		$service = new Nette\Caching\Storages\FileJournal('C:\\xampp\\htdocs\\sandbox\\app/../temp');
+		$service = new Nette\Caching\Storages\FileJournal('/var/www/RS/app/../temp');
 		return $service;
 	}
 
@@ -247,7 +247,7 @@ class SystemContainer extends Nette\DI\Container
 	public function createServiceNette__latte()
 	{
 		$service = new Latte\Engine;
-		$service->setTempDirectory('C:\\xampp\\htdocs\\sandbox\\app/../temp/cache/latte');
+		$service->setTempDirectory('/var/www/RS/app/../temp/cache/latte');
 		$service->setAutoRefresh(TRUE);
 		$service->setContentType('html');
 		return $service;
@@ -278,7 +278,7 @@ class SystemContainer extends Nette\DI\Container
 	 */
 	public function createServiceNette__presenterFactory()
 	{
-		$service = new Nette\Application\PresenterFactory('C:\\xampp\\htdocs\\sandbox\\app', $this);
+		$service = new Nette\Application\PresenterFactory('/var/www/RS/app', $this);
 		$service->setMapping(array(
 			'*' => 'App\\*Module\\Presenters\\*Presenter',
 		));
@@ -303,7 +303,7 @@ class SystemContainer extends Nette\DI\Container
 	 */
 	public function createServiceNette__templateCacheStorage()
 	{
-		$service = new Nette\Caching\Storages\PhpFileStorage('C:\\xampp\\htdocs\\sandbox\\app/../temp/cache', $this->getService('nette.cacheJournal'));
+		$service = new Nette\Caching\Storages\PhpFileStorage('/var/www/RS/app/../temp/cache', $this->getService('nette.cacheJournal'));
 		trigger_error('Service templateCacheStorage is deprecated.', 16384);
 		return $service;
 	}
@@ -397,7 +397,7 @@ final class SystemContainer_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_net
 	public function create()
 	{
 		$service = new Latte\Engine;
-		$service->setTempDirectory('C:\\xampp\\htdocs\\sandbox\\app/../temp/cache/latte');
+		$service->setTempDirectory('/var/www/RS/app/../temp/cache/latte');
 		$service->setAutoRefresh(TRUE);
 		$service->setContentType('html');
 		return $service;
